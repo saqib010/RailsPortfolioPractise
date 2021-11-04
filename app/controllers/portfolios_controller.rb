@@ -19,9 +19,30 @@ class PortfoliosController < ApplicationController
     end
   end
 
+  def edit
+    find 
+  end
+
+  def update
+    @portfolio_items = Portfolio.find(params[:id]) # for this duplicate code we can define a method like blog controller
+
+    respond_to do |format|
+      if @portfolio_items.update(portfolio_param)
+        format.html { redirect_to portfolios_path, notice: "Portfolio was successfully updated." }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # we can add this method body direct inplace of its call
   def portfolio_param
      params.require(:portfolio).permit(:title,:subtitle,:body)
+  end
+
+  # we can add this method body direct inplace of its call
+  def find
+    @portfolio_items = Portfolio.find(params[:id])
   end
 
 end
