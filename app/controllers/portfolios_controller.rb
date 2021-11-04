@@ -35,6 +35,16 @@ class PortfoliosController < ApplicationController
     end
   end
 
+  def destroy
+    find  # this to find the record of selected id
+
+    @portfolio_items.destroy #this will destroy the record
+    respond_to do |format|
+      format.html { redirect_to portfolios_url, notice: "Portfolio was successfully destroyed." }
+    end
+  end
+
+  
   def show
     find 
   end

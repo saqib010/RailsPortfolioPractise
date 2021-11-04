@@ -16,7 +16,7 @@
 	<% @portfolio_items.each do |portfolio_items| %>
 	<p><%= link_to portfolio_items.title, portfolio_path(portfolio_items.id) %></p>
 	<!--we can also remove the .id call in path this will still works the same -->
-	
+
 	<p><%= portfolio_items.subtitle %></p>
 	<p><%= portfolio_items.body %></p>
 	<%= image_tag portfolio_items.main_image unless portfolio_items.main_image.nil? %>
@@ -27,5 +27,9 @@
 
 	<!-- via button and we can also remove the .id call in path this will still works the same-->
 	<%=link_to '<button type="button">Edit</button>'.html_safe, edit_portfolio_path(portfolio_items.id)%>
+
+    <%= link_to '<button type="button">Delete</button>'.html_safe, portfolio_path(portfolio_items.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+
+
 
 	<% end %>
