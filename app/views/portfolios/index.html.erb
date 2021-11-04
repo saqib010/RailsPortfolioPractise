@@ -7,14 +7,16 @@
 <!-- <a href="Portfolios/new">Create new item</a> --> <!--creating href to new page -->
 
 
-<!-- to check what did the portfolio path and url looks like-->
+<!-- to check what did the portfolio path and url looks like-->	
 <!--
 <p><%=new_portfolio_path%></p>
 <br>
 <p><%=new_portfolio_url%></p>
 -->
 	<% @portfolio_items.each do |portfolio_items| %>
-	<p><%= portfolio_items.title %></p>
+	<p><%= link_to portfolio_items.title, portfolio_path(portfolio_items.id) %></p>
+	<!--we can also remove the .id call in path this will still works the same -->
+	
 	<p><%= portfolio_items.subtitle %></p>
 	<p><%= portfolio_items.body %></p>
 	<%= image_tag portfolio_items.main_image unless portfolio_items.main_image.nil? %>
@@ -23,7 +25,7 @@
 	<!-- via text link -->
 	<!-- <%=link_to 'Edit', edit_portfolio_path(portfolio_items.id)%> -->	
 
-	<!-- via button -->
+	<!-- via button and we can also remove the .id call in path this will still works the same-->
 	<%=link_to '<button type="button">Edit</button>'.html_safe, edit_portfolio_path(portfolio_items.id)%>
 
 	<% end %>

@@ -35,6 +35,10 @@ class PortfoliosController < ApplicationController
     end
   end
 
+  def show
+    find 
+  end
+
   # we can add this method body direct inplace of its call
   def portfolio_param
      params.require(:portfolio).permit(:title,:subtitle,:body)
@@ -44,5 +48,6 @@ class PortfoliosController < ApplicationController
   def find
     @portfolio_items = Portfolio.find(params[:id])
   end
+
 
 end
