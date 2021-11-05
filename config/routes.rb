@@ -10,7 +10,10 @@ Rails.application.routes.draw do
 
 
 
-  resources :portfolios
+  resources :portfolios, except:[:show]
+
+  get 'portfolio/:id', to:'portfolios#show', as:'portfolio_show'
+  # this makes us to change portfolio_path to portfolio_show_path inside index file
   resources :blogs
   resources :skills
 

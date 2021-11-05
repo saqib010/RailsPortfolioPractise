@@ -14,7 +14,13 @@
 <p><%=new_portfolio_url%></p>
 -->
 	<% @portfolio_items.each do |portfolio_items| %>
-	<p><%= link_to portfolio_items.title, portfolio_path(portfolio_items.id) %></p>
+
+	<!-- before overriding the resounces -->
+	<!-- <p><%= link_to portfolio_items.title, portfolio_path(portfolio_items.id) %></p> --> 
+
+	<!-- after overriding the resources -->
+	<p><%= link_to portfolio_items.title, portfolio_show_path(portfolio_items.id) %></p> 
+
 	<!--we can also remove the .id call in path this will still works the same -->
 
 	<p><%= portfolio_items.subtitle %></p>
