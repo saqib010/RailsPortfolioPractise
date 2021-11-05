@@ -8,13 +8,15 @@ Rails.application.routes.draw do
   
   root to:'pages#home' #home page is now our first page at http://localhost:3000/
 
-
-
   resources :portfolios, except:[:show]
 
   get 'portfolio/:id', to:'portfolios#show', as:'portfolio_show'
   # this makes us to change portfolio_path to portfolio_show_path inside index file
-  resources :blogs
+  resources :blogs do
+    member do
+      get :toggle_status
+    end
+  end
   resources :skills
 
 

@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_action :set_blog, only: %i[ show edit update destroy ]
+  before_action :set_blog, only: %i[ show edit update destroy toggle_status] #these action has access to the blog instance
 
   # GET /blogs or /blogs.json
   def index
@@ -54,6 +54,18 @@ class BlogsController < ApplicationController
       format.html { redirect_to blogs_url, notice: "Blog was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  #define to toggle b/w draft and published status
+  def toggle_status
+    #byebug #look guide for its use
+    
+    if @blog.draft?
+    @blog.published!
+  elsif @blog.published?
+    @blog.draft! 
+  end
+    redirect_to blogs_url, notice: 'post status has been updated.' #used for test purpose
   end
 
   private
